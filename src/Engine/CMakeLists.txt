@@ -1,0 +1,12 @@
+target_sources(renderlib
+PRIVATE
+    window.cpp
+    window.h
+    shader.cpp 
+    shader.h
+    Precomp.cpp 
+PUBLIC
+    Precomp.h
+)
+
+target_precompile_headers(renderlib PUBLIC Precomp.h)

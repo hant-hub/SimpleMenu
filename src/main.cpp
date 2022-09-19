@@ -1,11 +1,10 @@
 #include <stdio.h>
-
+#include "window.h"
 
 
 
 int main() {
-
-    printf("bam\n");
-
+    run();
     return 0;
+   
 }

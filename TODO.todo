@@ -1,0 +1,9 @@
+Set-up:
+    ✔ Create Window @done (9/18/2022, 6:06:41 PM)
+    ☐ Shaders
+    ☐ Instancing
+    ☐ Create Resource Manager
+API:
+    ☐ Create Library interface
+    ☐ Create Namespace hierarchy
+    ☐ low level stuff?
