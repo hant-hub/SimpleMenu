@@ -3,7 +3,7 @@
 
 
 namespace Render {
-    Window::Window(int width, int height, const char* title) {
+    Window::Window(int width, int height, const char* title) : width(width), height(height) {
         
         if (glfwInit() == GLFW_FALSE) {
             printf("the very first one\n");

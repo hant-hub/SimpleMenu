@@ -6,7 +6,11 @@
 
 namespace Render {
 
-    typedef GLuint shader;
+    struct shader {
+        GLuint ID;
+
+        void Use() { glUseProgram(ID); }
+    };
 
 
 
@@ -15,9 +19,10 @@ namespace Render {
 
 
 
-    void SetInt(shader s, int i);
-    void SetFloat(shader s, float f);
-    void SetBool(shader s, bool b);
+    void SetInt(shader s, int i, const char* name);
+    void SetFloat(shader s, float f, const char* name);
+    void SetBool(shader s, bool b, const char* name);
+    void SetMat4(shader s, glm::mat4 m, const char* name);
     
 
 };

@@ -9,4 +9,6 @@ PUBLIC
     Precomp.h
 )
 
+add_subdirectory(Renderer)
+
 target_precompile_headers(renderlib PUBLIC Precomp.h)

@@ -1,9 +1,23 @@
 Set-up:
     ✔ Create Window @done (9/18/2022, 6:06:41 PM)
-    ☐ Shaders
+    ☐ Sprites
+        ✔ Basic Renderer @done (12/18/2022, 12:05:25 AM)
+        ✔ Redo Pointers @done (12/19/2022, 10:43:23 PM)
+        ✔ Deletion @done (12/29/2022, 11:18:40 PM)
+        ☐ Images
+        ☐ Abstract Sprite Alteration
+        ☐ Sprite Sheets?
+    ✔ Shaders @done (12/18/2022, 12:06:46 AM)
+    ☐ Alternate Renders
+        ☐ lines
+        ☐ curves
+        ☐ splines
+    ☐ Batching
     ☐ Instancing
+    ☐ Framebuffers
+        ☐ Postprocessing
+        ☐ Stylization
     ☐ Create Resource Manager
 API:
     ☐ Create Library interface
     ☐ Create Namespace hierarchy
-    ☐ low level stuff?

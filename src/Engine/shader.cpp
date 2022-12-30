@@ -75,7 +75,25 @@ namespace Render {
         glDeleteShader(fragment);
 
 
-        return ID;
+        return {ID};
+    }
+
+    void SetInt(shader s, int i, const char* name){
+        s.Use();
+        glUniform1i(glGetUniformLocation(s.ID, name), i);
+    }
+    void SetFloat(shader s, float f, const char* name){
+        s.Use();
+        glUniform1f(glGetUniformLocation(s.ID, name), f);
+    }
+    void SetBool(shader s, bool b, const char* name){
+        s.Use();
+        glUniform1i(glGetUniformLocation(s.ID, name), b);
+    }
+
+    void SetMat4(shader s, glm::mat4 m, const char* name) {
+        s.Use();
+        glUniformMatrix4fv(glGetUniformLocation(s.ID, name), 1, GL_FALSE, glm::value_ptr(m));
     }
 
 
