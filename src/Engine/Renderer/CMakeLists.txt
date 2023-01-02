@@ -7,3 +7,5 @@ PUBLIC
 PRIVATE
     
 )
+
+add_subdirectory(images)
