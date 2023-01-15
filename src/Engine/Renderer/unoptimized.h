@@ -9,10 +9,16 @@ namespace Render{
 class unopRenderer;
 
 
-struct unopSprite {
-    glm::mat4 model;
-    unopRenderer* r;
+struct unopSprite: public Sprite {
+
+using Sprite::Sprite;
+
+void SetPos(glm::vec3 pos) override;
+void SetRot(glm::vec4 rot) override;
+void SetSize(glm::ivec2 size) override;
 };
+
+
 
 class unopRenderer: public Renderer {
     public:
@@ -23,7 +29,7 @@ class unopRenderer: public Renderer {
 
         void Delete(int index);
 
-        Sprite* AddSprite(float width, float height, glm::vec4 rot, glm::vec3 pos);
+        Sprite* AddSprite(float width, float height, glm::vec4 rot, glm::vec3 pos, GLuint texture);
 
 
     private:

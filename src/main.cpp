@@ -2,6 +2,7 @@
 #include "window.h"
 #include "shader.h"
 #include "Renderer/unoptimized.h"
+#include "Renderer/images/image.h"
 
 
 int main() {
@@ -16,7 +17,11 @@ int main() {
     //Render::shader s2 = Render::CompileShader("shaders/invert.vert", "shaders/invert.frag");
 
     Render::unopRenderer r(true, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 1.0f), s1, &w);
-    Render::Sprite* s = r.AddSprite(100.0f, 100.0f, glm::vec4(1.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+
+    Render::Image::texture t = Render::Image::downloadImage("images/test.png");
+
+    Render::Sprite* s = r.AddSprite(100.0f, 100.0f, glm::vec4(1.0f), glm::vec3(0.0f, 0.0f, 1.0f), t.id);
+    Render::Sprite* s2 = r.AddSprite(100.0f, 100.0f, glm::vec4(1.0f), glm::vec3(200.0f, 0.0f, 1.0f), t.id);
 
     glm::vec4 rot(glm::vec4(1.0f));
 

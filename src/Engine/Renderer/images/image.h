@@ -1,5 +1,5 @@
 #pragma once
-
+#include <../../lib/stbimage/stb_image.h>
 
 namespace Render {
 

@@ -7,6 +7,7 @@ add_library(renderlib)
 add_subdirectory(lib)
 add_subdirectory(Engine)
 add_subdirectory(shaders)
+add_subdirectory(images)
 target_include_directories(renderlib PUBLIC Engine)
 
 #target_include_directories(renderlib ".")

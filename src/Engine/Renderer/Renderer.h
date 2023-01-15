@@ -17,38 +17,46 @@ namespace Render {
 
     struct Sprite {
 
-        Sprite(glm::vec3 pos, glm::vec4 rot, glm::ivec2 dim, Renderer* r, int index);
+        Sprite(glm::vec3 pos, glm::vec4 rot, glm::ivec2 dim, Renderer* r, int index, GLuint texture = 0);
 
 
         //positional information
         glm::mat4 model;
         glm::vec3 pos;
         glm::vec4 rot;
-        glm::ivec2 dim;
+        glm::ivec2 size;
 
+
+        //memory management
         Renderer* r;
         int index;
 
+        //texture stuff
+        GLuint texture;
+
         void Delete();
         
-        void SetPos(glm::vec3 pos);
-        void SetRot(glm::vec4 rot);
-        void SetSize(glm::ivec2 size);
+        virtual void SetPos(glm::vec3 pos) = 0;
+        virtual void SetRot(glm::vec4 rot) = 0;
+        virtual void SetSize(glm::ivec2 size) = 0;
         
 
     };
 
     struct Vertex {
-        glm::vec3 pos;
-        //glm::vec2 uv;
+        glm::vec4 pos;
+        glm::vec2 uv;
     };
 
 
     struct Quad {
+        //not using index stuff
         Vertex a;
         Vertex b;
         Vertex c;
         Vertex d;
+        Vertex e;
+        Vertex f;
         //GLuint tex;
     };
 
