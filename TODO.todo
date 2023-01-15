@@ -4,8 +4,12 @@ Set-up:
         ✔ Basic Renderer @done (12/18/2022, 12:05:25 AM)
         ✔ Redo Pointers @done (12/19/2022, 10:43:23 PM)
         ✔ Deletion @done (12/29/2022, 11:18:40 PM)
-        ☐ Images
+        ✔ Images @done (1/4/2023, 10:18:58 PM)
         ☐ Abstract Sprite Alteration
+            ✔ translation @done (1/14/2023, 12:32:48 AM)
+            ✔ rotation @done (1/14/2023, 12:32:49 AM)
+            ✔ scale @done (1/14/2023, 12:32:50 AM)
+            ☐ opacity
         ☐ Sprite Sheets?
     ✔ Shaders @done (12/18/2022, 12:06:46 AM)
     ☐ Alternate Renders
