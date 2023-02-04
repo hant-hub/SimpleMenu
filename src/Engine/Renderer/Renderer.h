@@ -11,6 +11,9 @@ namespace Render {
         public:
             virtual void Delete(int index) = 0;
 
+        private:
+            shader s;
+
     };
     class Window;
 

@@ -4,6 +4,8 @@ PUBLIC
     Renderer.h
     unoptimized.cpp
     unoptimized.h
+    Batched.h 
+    Batched.cpp
 PRIVATE
     
 )

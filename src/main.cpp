@@ -2,6 +2,7 @@
 #include "window.h"
 #include "shader.h"
 #include "Renderer/unoptimized.h"
+#include "Renderer/Batched.h"
 #include "Renderer/images/image.h"
 
 
@@ -13,17 +14,15 @@ int main() {
 
 
 
-    Render::shader s1 = Render::CompileShader("shaders/standard.vert", "shaders/standard.frag");
+    Render::shader s1 = Render::CompileShader("shaders/Batch.vert", "shaders/Batch.frag");
     //Render::shader s2 = Render::CompileShader("shaders/invert.vert", "shaders/invert.frag");
 
-    Render::unopRenderer r(true, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 1.0f), s1, &w);
+    Render::BatchRenderer r(true, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 1.0f), s1, &w);
 
     Render::Image::texture t = Render::Image::downloadImage("images/test.png");
 
-    Render::Sprite* s = r.AddSprite(100.0f, 100.0f, glm::vec4(1.0f), glm::vec3(0.0f, 0.0f, 1.0f), t.id);
-    Render::Sprite* s2 = r.AddSprite(100.0f, 100.0f, glm::vec4(1.0f), glm::vec3(200.0f, 0.0f, 1.0f), t.id);
+    Render::Sprite* s = r.AddSprite(100.0f, 100.0f, glm::vec4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f), t.id);
 
-    glm::vec4 rot(glm::vec4(1.0f));
 
     bool d = true;
 
@@ -33,13 +32,17 @@ int main() {
 
         r.Draw();
 
-       
-        if ((glfwGetTime() > 5.0f) && d) {
-            printf("bam\n");
-            s->Delete();
-            delete s;
-            d = false;
+        if (d) {
+            s->SetPos(s->pos + glm::vec3(1.0f, 0.0f, 0.0f));
+            s->SetRot(s->rot + glm::vec4(0.0f, 0.0f, 1.0f, 0.5f));
+            std::cout << glm::to_string(s->pos) << std::endl;
         }
+
+        if ((glfwGetTime() > 5.0f) && (d)) {
+            d = false;
+            s->Delete();
+        }
+
 
 
         glfwSwapBuffers(w.GetWindow());
