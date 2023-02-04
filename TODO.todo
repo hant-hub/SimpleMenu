@@ -17,6 +17,8 @@ Set-up:
         ☐ curves
         ☐ splines
     ☐ Batching
+        ✔ batch rendering @done (2/3/2023, 8:12:54 PM)
+        ☐ images
     ☐ Instancing
     ☐ Framebuffers
         ☐ Postprocessing
