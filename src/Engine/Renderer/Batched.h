@@ -7,10 +7,10 @@ namespace Render {
 
 
 struct batchSprite : public Sprite {
-    batchSprite(glm::vec3 pos, glm::vec4 rot, glm::ivec2 dim, Renderer* r, int index, GLuint texture);
+    batchSprite(glm::vec3 pos, glm::vec4 rot, glm::ivec2 dim, Renderer* r, int index, int sheetindex);
 
     Quad geo;
-     
+    int sheetindex; 
 
     
     void SetPos(glm::vec3 pos) override;
@@ -20,7 +20,7 @@ struct batchSprite : public Sprite {
 
 class BatchRenderer: public Renderer {
     public:
-        BatchRenderer(bool ortho, glm::vec3 campos, glm::vec3 viewdir, shader s, Window* w);
+        BatchRenderer(bool ortho, glm::vec3 campos, glm::vec3 viewdir, shader s, Window* w, GLuint sheet, glm::ivec2 size);
         ~BatchRenderer();
 
         void Draw();
@@ -29,10 +29,15 @@ class BatchRenderer: public Renderer {
 
         void Delete(int index) override;
 
-    private:
+    private:  
 
         GLuint VAO;
         GLuint VBO;
+
+
+        //spritesheet for renderer
+        GLuint sheet;
+        glm::vec2 size;
 
 
         glm::mat4 Cam;
