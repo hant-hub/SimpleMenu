@@ -8,7 +8,7 @@ namespace Render {
 
         model = glm::translate(model, pos);
         model = glm::rotate(model, glm::radians(rot.w), {rot.x, rot.y, rot.z});
-        model = glm::scale(model, glm::vec3(glm::vec2(size.x), 1.0f));
+        model = glm::scale(model, glm::vec3(size, 1.0f));
         
     }
 

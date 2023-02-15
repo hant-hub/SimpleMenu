@@ -1,4 +1,5 @@
 #pragma once
+#include "images/image.h"
 #include "../shader.h"
 #include "../window.h"
 
@@ -13,7 +14,7 @@ namespace Render {
 
         private:
             shader s;
-
+            
     };
     class Window;
 
@@ -49,6 +50,7 @@ namespace Render {
     struct Vertex {
         glm::vec4 pos;
         glm::vec2 uv;
+        int index;
     };
 
 
