@@ -5,20 +5,20 @@ Set-up:
         ✔ Redo Pointers @done (12/19/2022, 10:43:23 PM)
         ✔ Deletion @done (12/29/2022, 11:18:40 PM)
         ✔ Images @done (1/4/2023, 10:18:58 PM)
-        ☐ Abstract Sprite Alteration
+        ✔ Abstract Sprite Alteration @done (2/25/2023, 10:10:37 PM)
             ✔ translation @done (1/14/2023, 12:32:48 AM)
             ✔ rotation @done (1/14/2023, 12:32:49 AM)
             ✔ scale @done (1/14/2023, 12:32:50 AM)
-            ☐ opacity
-        ☐ Sprite Sheets?
+            ✔ opacity @done (2/25/2023, 10:08:56 PM)
+        ✔ Sprite Sheets? @done (2/25/2023, 8:21:32 PM)
     ✔ Shaders @done (12/18/2022, 12:06:46 AM)
-    ☐ Alternate Renders
-        ☐ lines
-        ☐ curves
-        ☐ splines
-    ☐ Batching
+    ✘ Alternate Renders @cancelled (2/25/2023, 10:09:03 PM)
+        ✘ lines @cancelled (2/25/2023, 10:09:05 PM)
+        ✘ curves @cancelled (2/25/2023, 10:09:06 PM)
+        ✘ splines @cancelled (2/25/2023, 10:09:07 PM)
+    ✔ Batching @done (2/25/2023, 8:21:41 PM)
         ✔ batch rendering @done (2/3/2023, 8:12:54 PM)
-        ☐ images
+        ✔ images @done (2/25/2023, 8:21:39 PM)
     ☐ Instancing
     ☐ Framebuffers
         ☐ Postprocessing
