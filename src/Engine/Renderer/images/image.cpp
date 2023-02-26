@@ -22,7 +22,7 @@ namespace Render {
 
             glGenTextures(1, &id);
             glBindTexture(GL_TEXTURE_2D, id);
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, i.width, i.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, i.data);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, i.width, i.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, i.data);
 
             glGenerateMipmap(GL_TEXTURE_2D);
 

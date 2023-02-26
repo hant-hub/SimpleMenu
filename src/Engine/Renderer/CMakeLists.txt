@@ -2,8 +2,8 @@ target_sources(renderlib
 PUBLIC 
     Renderer.cpp
     Renderer.h
-    unoptimized.cpp
-    unoptimized.h
+    transparency.cpp
+    transparency.h
     Batched.h 
     Batched.cpp
 PRIVATE

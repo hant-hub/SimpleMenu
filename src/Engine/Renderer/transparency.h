@@ -6,24 +6,25 @@
 
 namespace Render{
 
-class unopRenderer;
+class transRenderer;
 
 
-struct unopSprite: public Sprite {
+struct transSprite: public Sprite {
 
 using Sprite::Sprite;
 
 void SetPos(glm::vec3 pos) override;
 void SetRot(glm::vec4 rot) override;
 void SetSize(glm::ivec2 size) override;
+void SetOpacity(float opacity) override;
 };
 
 
 
-class unopRenderer: public Renderer {
+class transRenderer: public Renderer {
     public:
-        unopRenderer(bool ortho, glm::vec3 campos, glm::vec3 viewdir, shader s, Window* w);
-        ~unopRenderer();
+        transRenderer(bool ortho, glm::vec3 campos, glm::vec3 viewdir, shader s, Window* w);
+        ~transRenderer();
 
         void Draw();
 

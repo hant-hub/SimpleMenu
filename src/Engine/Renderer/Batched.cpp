@@ -92,6 +92,10 @@ namespace Render {
 
     }
 
+    void batchSprite::SetOpacity(float opacity) {
+        printf("ERROR::Incorrect Renderer Type (change renderer to transRenderer)\n");
+    }
+
 
 
     BatchRenderer::BatchRenderer(bool ortho, glm::vec3 campos, glm::vec3 viewdir, shader s, Window* w, GLuint sheet, glm::ivec2 size) : sheet(sheet), size(size), w(w), s(s) {

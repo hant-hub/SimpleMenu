@@ -16,6 +16,7 @@ struct batchSprite : public Sprite {
     void SetPos(glm::vec3 pos) override;
     void SetRot(glm::vec4 rot) override;
     void SetSize(glm::ivec2 size) override;
+    void SetOpacity(float opacity) override;
 };
 
 class BatchRenderer: public Renderer {

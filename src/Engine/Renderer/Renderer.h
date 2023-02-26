@@ -30,6 +30,9 @@ namespace Render {
         glm::vec4 rot;
         glm::ivec2 size;
 
+        //opacity
+        float opacity;
+
 
         //memory management
         Renderer* r;
@@ -43,6 +46,7 @@ namespace Render {
         virtual void SetPos(glm::vec3 pos) = 0;
         virtual void SetRot(glm::vec4 rot) = 0;
         virtual void SetSize(glm::ivec2 size) = 0;
+        virtual void SetOpacity(float opacity) = 0;
         
 
     };

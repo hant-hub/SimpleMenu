@@ -10,6 +10,7 @@ namespace Render {
         model = glm::rotate(model, glm::radians(rot.w), {rot.x, rot.y, rot.z});
         model = glm::scale(model, glm::vec3(size, 1.0f));
         
+        opacity = 1.0f;
     }
 
     void Sprite::Delete() {

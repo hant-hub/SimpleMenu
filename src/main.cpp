@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "window.h"
 #include "shader.h"
-#include "Renderer/unoptimized.h"
+#include "Renderer/transparency.h"
 #include "Renderer/Batched.h"
 #include "Renderer/images/image.h"
 
@@ -18,34 +18,29 @@ int main() {
     Render::shader s2 = Render::CompileShader("shaders/standard.vert", "shaders/standard.frag");
 
     Render::Image::texture t = Render::Image::downloadImage("images/sheet1.png");
-
-
-    Render::BatchRenderer r(true, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 1.0f), s1, &w, t.id, glm::ivec2(3,1));
-    Render::unopRenderer r2(true, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 1.0f), s2, &w);
+    Render::Image::texture t1 = Render::Image::downloadImage("images/transparent.png");
     
 
-    Render::Sprite* s = r.AddSprite(100.0f, 100.0f, glm::vec4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f), 2);
-    Render::Sprite* sp2 = r2.AddSprite(100.0f, 100.0f, glm::vec4(1.0f), glm::vec3(200.0f, 0.0f, 0.0f), t.id);
 
+    Render::BatchRenderer r(true, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 1.0f), s1, &w, t1.id, glm::ivec2(1,1));
+    Render::transRenderer r2(true, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 1.0f), s2, &w);
+    
+    
+    Render::Sprite* s = r.AddSprite(300.0f, 300.0f, glm::vec4(0.0f, 0.0f, 1.0f, 100.0f), glm::vec3(0.0f, 0.0f, -10.0f), 0);
+    Render::Sprite* sp2 = r2.AddSprite(1000.0f, 1000.0f, glm::vec4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f), t.id);
+   
     bool d = true;
 
     while (!glfwWindowShouldClose(w.GetWindow())) {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         r.Draw();
         r2.Draw();
-        // if (d) {
-        //     s->SetPos(s->pos + glm::vec3(1.0f, 0.0f, 0.0f));
-        //     s->SetRot(s->rot + glm::vec4(0.0f, 0.0f, 1.0f, 0.5f));
-        //     std::cout << glm::to_string(s->pos) << std::endl;
-        // }
-
-        if ((int(glfwGetTime()*60)%5 == 0 )) {
-            printf("boom\n");
-            ((Render::batchSprite*)s)->sheetindex += 1;
-            s->SetPos(s->pos);
-        }
+       
+       if (glfwGetTime() > 5.0f) {
+            s->SetOpacity(s->opacity - 0.01f);
+       }
 
 
 

@@ -1,11 +1,11 @@
-#include "unoptimized.h"
+#include "transparency.h"
 
 
 
 namespace Render {
 
     
-    void unopSprite::SetPos(glm::vec3 pos) {
+    void transSprite::SetPos(glm::vec3 pos) {
         this->pos = pos;
         model = glm::mat4(1.0f);
 
@@ -13,7 +13,7 @@ namespace Render {
         model = glm::rotate(model, glm::radians(rot.w), {rot.x, rot.y, rot.z});
         model = glm::scale(model, glm::vec3(glm::vec2(size.x), 1.0f));
     }
-    void unopSprite::SetRot(glm::vec4 rot) {
+    void transSprite::SetRot(glm::vec4 rot) {
         this->rot = rot;
         model = glm::mat4(1.0f);
 
@@ -21,7 +21,7 @@ namespace Render {
         model = glm::rotate(model, glm::radians(rot.w), {rot.x, rot.y, rot.z});
         model = glm::scale(model, glm::vec3(glm::vec2(size.x), 1.0f));
     }
-    void unopSprite::SetSize(glm::ivec2 size) {
+    void transSprite::SetSize(glm::ivec2 size) {
         this->size = size;
         model = glm::mat4(1.0f);
 
@@ -29,10 +29,13 @@ namespace Render {
         model = glm::rotate(model, glm::radians(rot.w), {rot.x, rot.y, rot.z});
         model = glm::scale(model, glm::vec3(glm::vec2(size.x), 1.0f));
     }
+    void transSprite::SetOpacity(float opacity) {
+        this->opacity = opacity;
+    }
 
 
 
-    unopRenderer::unopRenderer(bool ortho, glm::vec3 campos, glm::vec3 viewdir, shader s, Window* w) : s(s), w(w) {
+    transRenderer::transRenderer(bool ortho, glm::vec3 campos, glm::vec3 viewdir, shader s, Window* w) : s(s), w(w) {
 
         if (ortho) {
             proj = glm::ortho((float)w->GetWidth()/2, -(float)w->GetWidth()/2, -(float)w->GetHeight()/2, (float)w->GetHeight()/2, -100.0f, 100.0f);
@@ -74,20 +77,20 @@ namespace Render {
 
     }
 
-    unopRenderer::~unopRenderer() {
+    transRenderer::~transRenderer() {
 
     }
 
-    Sprite* unopRenderer::AddSprite(float width, float height, glm::vec4 rot, glm::vec3 pos, GLuint texture) {
+    Sprite* transRenderer::AddSprite(float width, float height, glm::vec4 rot, glm::vec3 pos, GLuint texture) {
         
-        Sprite *sprite = new unopSprite(pos, rot, glm::ivec2(width, height), this, sprites.size(), texture);
+        Sprite *sprite = new transSprite(pos, rot, glm::ivec2(width, height), this, sprites.size(), texture);
         
         sprites.push_back(sprite);
 
         return sprite;
     }
 
-    void unopRenderer::Delete(int index) {
+    void transRenderer::Delete(int index) {
         printf("bam\n");
         sprites.erase(sprites.begin() + index);
         
@@ -96,18 +99,27 @@ namespace Render {
         }
     }
 
-    void unopRenderer::Draw() {
+    void transRenderer::Draw() {
         s.Use();
         SetMat4(s, proj, "proj");
         SetMat4(s, Cam, "view");
         glBindVertexArray(VAO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-        for (Sprite* sprite : sprites) {
+        std::vector<Sprite*> sorted(sprites);
+
+        auto depthcomp = [](Sprite* a, Sprite* b) {return a->pos.z > b->pos.z;};
+
+
+        std::sort(sorted.begin(), sorted.end(), depthcomp);
+
+
+        for (Sprite* sprite : sorted) {
             
             glBindTexture(GL_TEXTURE_2D, sprite->texture);
-            
+            std::cout << sprite->opacity << std::endl;
             SetMat4(s, sprite->model, "model");
+            SetFloat(s, sprite->opacity, "opacity");
             glDrawArrays(GL_TRIANGLES, 0, 6);
             
         }
