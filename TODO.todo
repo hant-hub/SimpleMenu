@@ -21,7 +21,10 @@ Set-up:
         ✔ images @done (2/25/2023, 8:21:39 PM)
     ☐ Instancing
     ☐ Framebuffers
-        ☐ Postprocessing
+        ☐ Setup and Target
+        ☐ Render Frambuffer
+        ☐ Configurable pipeline
+    ☐ Postprocessing
         ☐ Stylization
     ☐ Create Resource Manager
 API:

@@ -128,7 +128,7 @@ namespace Render {
     }
 
     BatchRenderer::~BatchRenderer() {
-
+        
     }
 
     Sprite* BatchRenderer::AddSprite(float width, float height, glm::vec4 rot, glm::vec3 pos, GLuint texture) {

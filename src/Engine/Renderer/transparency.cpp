@@ -78,7 +78,7 @@ namespace Render {
     }
 
     transRenderer::~transRenderer() {
-
+        
     }
 
     Sprite* transRenderer::AddSprite(float width, float height, glm::vec4 rot, glm::vec3 pos, GLuint texture) {
