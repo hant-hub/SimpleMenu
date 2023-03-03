@@ -12,18 +12,17 @@ Set-up:
             ✔ opacity @done (2/25/2023, 10:08:56 PM)
         ✔ Sprite Sheets? @done (2/25/2023, 8:21:32 PM)
     ✔ Shaders @done (12/18/2022, 12:06:46 AM)
-    ✘ Alternate Renders @cancelled (2/25/2023, 10:09:03 PM)
-        ✘ lines @cancelled (2/25/2023, 10:09:05 PM)
-        ✘ curves @cancelled (2/25/2023, 10:09:06 PM)
-        ✘ splines @cancelled (2/25/2023, 10:09:07 PM)
     ✔ Batching @done (2/25/2023, 8:21:41 PM)
         ✔ batch rendering @done (2/3/2023, 8:12:54 PM)
         ✔ images @done (2/25/2023, 8:21:39 PM)
     ☐ Instancing
     ☐ Framebuffers
-        ☐ Setup and Target
-        ☐ Render Frambuffer
-        ☐ Configurable pipeline
+        ✔ Setup and Target @done (3/1/2023, 11:40:11 PM)
+        ✔ Render Frambuffer @done (3/1/2023, 11:40:12 PM)
+        ☐ Individualize effects
+        ☐ More flexible shaders 
+        ☐ multi-step effects 
+        ☐ multi-texture effects
     ☐ Postprocessing
         ☐ Stylization
     ☐ Create Resource Manager

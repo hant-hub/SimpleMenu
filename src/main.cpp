@@ -9,46 +9,51 @@
 
 int main() {
      
-    Render::Window w = Render::Window(800, 600, "window");
+    Render::Window w = Render::Window(1920, 1080, "window");
     printf("%u\n", w.GetWindow());
-    glViewport(0,0, 800, 600);
+    glViewport(0,0, 1920, 1080);
 
-
+    glfwWindowHint(GLFW_SAMPLES, 32);
+    glEnable(GL_MULTISAMPLE);
 
     Render::shader s1 = Render::CompileShader("shaders/Default/Batch.vert", "shaders/Default/Batch.frag");
     Render::shader s2 = Render::CompileShader("shaders/Default/standard.vert", "shaders/Default/standard.frag");
-    Render::shader s3 = Render::CompileShader("shaders/Sharpen/standard.vert", "shaders/Sharpen/standard.frag");
-    Render::shader s4 = Render::CompileShader("shaders/Invert/standard.vert", "shaders/Invert/standard.frag");
+    Render::shader s3 = Render::CompileShader("shaders/MandelBrot/standard.vert", "shaders/MandelBrot/standard.frag");
+
 
     Render::Image::texture t = Render::Image::downloadImage("images/sheet1.png");
     Render::Image::texture t1 = Render::Image::downloadImage("images/transparent.png");
     
 
 
-    Render::BatchRenderer r(true, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 1.0f), s1, &w, t1.id, glm::ivec2(1,1));
-    Render::transRenderer r2(true, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 1.0f), s2, &w);
+    Render::transRenderer r(true, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 0.0f, 1.0f), s1, &w);
     
-    Render::Sprite* s = r.AddSprite(300.0f, 300.0f, glm::vec4(0.0f, 0.0f, 1.0f, 100.0f), glm::vec3(0.0f, 0.0f, -10.0f), 0);
-    Render::Sprite* sp2 = r2.AddSprite(1000.0f, 1000.0f, glm::vec4(1.0f, 1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), t.id);
+    Render::Sprite* s = r.AddSprite(w.GetWidth(), w.GetHeight(), glm::vec4(1.0f, 1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, -10.0f), 0);
+    
    
     bool d = true;
 
     Render::FrameStep f(&w, s3);
-    Render::FrameStep f2(&w, s4);
 
-    
-    
+    float scale = 4.0f;
+    int power = 1;
+    float geo = 0.0015;
+    glm::vec2 origin(((1 - std::cos(1.5f))/2) * (std::cos(1.5f)) +0.25f, ((1 - std::cos(1.5f))/2) * std::sin(1.5f));
 
     while (!glfwWindowShouldClose(w.GetWindow())) {
-        f.Begin();
-
-        r.Draw();
-        r2.Draw();
-
-        f.Draw(0);
-        //f2.Draw(0);
+        s3.Use();
+        glUniform1f(glGetUniformLocation(s3.ID, "scale"), scale);
+        glUniform2f(glGetUniformLocation(s3.ID, "origin"), -(origin.x), origin.y);
         
+        f.Draw(0);
+        
+        scale *= 0.99f;
+        for (int i; i<1; i++) {
+            geo *= geo;
+        }
 
+        origin += geo * glm::vec2(-0.1f, 0.1f);
+        power++;
 
         glfwSwapBuffers(w.GetWindow());
         glfwPollEvents();

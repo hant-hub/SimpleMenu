@@ -14,9 +14,15 @@ namespace Render {
         void Begin();
         void Draw(GLuint target);
         
+
+        Window* w;
+
         GLuint fbo;
+        GLuint intermediate;
         GLuint rbo;
+        GLuint intermediaterbo;
         GLuint texture;
+        GLuint transfertexture;
         transRenderer* r;
 
     };
