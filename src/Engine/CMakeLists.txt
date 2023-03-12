@@ -5,6 +5,8 @@ PRIVATE
     shader.cpp 
     shader.h
     Precomp.cpp 
+    inputs.h
+    inputs.cpp
 PUBLIC
     Precomp.h
 )

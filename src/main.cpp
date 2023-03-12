@@ -1,17 +1,27 @@
 #include <stdio.h>
 #include "window.h"
 #include "shader.h"
+#include "inputs.h"
 #include "Renderer/transparency.h"
 #include "Renderer/Batched.h"
 #include "Renderer/images/image.h"
 #include "Renderer/postprocessor/renderStep.h"
 
 
+glm::vec2 iter(glm::vec2 input, glm::vec2 c) {
+    float real = input.x;
+    float complex = input.y;
+
+    return glm::vec2(real*real - complex*complex, 2.0f * real * complex) + c;
+};
+
+
+
 int main() {
      
-    Render::Window w = Render::Window(1920, 1080, "window");
+    Render::Window w = Render::Window(1080, 1080, "window");
     printf("%u\n", w.GetWindow());
-    glViewport(0,0, 1920, 1080);
+    glViewport(0,0, 1080, 1080);
 
     glfwWindowHint(GLFW_SAMPLES, 32);
     glEnable(GL_MULTISAMPLE);
@@ -38,22 +48,25 @@ int main() {
     float scale = 4.0f;
     int power = 1;
     float geo = 0.0015;
-    glm::vec2 origin(((1 - std::cos(1.5f))/2) * (std::cos(1.5f)) +0.25f, ((1 - std::cos(1.5f))/2) * std::sin(1.5f));
+    glm::vec2 target(-1.907352157f, 0.001985254f);
+    glm::vec2 origin(0,0);
+    glm::vec2 constant(0,0);
 
     while (!glfwWindowShouldClose(w.GetWindow())) {
         s3.Use();
         glUniform1f(glGetUniformLocation(s3.ID, "scale"), scale);
-        glUniform2f(glGetUniformLocation(s3.ID, "origin"), -(origin.x), origin.y);
+        constant = Render::InputReader::GetMousePos(w.GetWindow());
+        glUniform2f(glGetUniformLocation(s3.ID, "constant"), (constant.x), constant.y);
+        glUniform2f(glGetUniformLocation(s3.ID, "origin"), (origin.x), origin.y);
         
         f.Draw(0);
         
-        scale *= 0.99f;
-        for (int i; i<1; i++) {
-            geo *= geo;
+        if (scale > 0.0005f && Render::InputReader::GetKeyState(w.GetWindow(), GLFW_KEY_A)){
+        scale *= 0.997f;
+        //origin += (1-0.996f) * (target - origin);
         }
 
-        origin += geo * glm::vec2(-0.1f, 0.1f);
-        power++;
+        //origin = iter(origin, glm::vec2(0,0));
 
         glfwSwapBuffers(w.GetWindow());
         glfwPollEvents();
